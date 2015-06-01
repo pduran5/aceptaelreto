@@ -1,6 +1,6 @@
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  * @author Peter
@@ -12,12 +12,14 @@ public class AR100 {
 	static byte contador=0;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int casos = Short.valueOf(br.readLine());
+		BufferedInputStream bis = new BufferedInputStream(System.in);
+		Scanner in = new Scanner(bis);
+		short casos = in.nextShort();
 		for (int i = 0; i < casos; i++) {
-			System.out.println(Kaprekar(Short.valueOf(br.readLine())));		
+			System.out.println(Kaprekar(in.nextShort()));		
 			contador=0;
 		}
+		in.close();
 	}
 
 	private static short Kaprekar(short numero) {
