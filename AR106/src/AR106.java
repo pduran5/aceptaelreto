@@ -1,3 +1,4 @@
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,65 +6,61 @@ import java.io.InputStreamReader;
 /**
  * @author Peter
  * @see https://www.aceptaelreto.com/problem/statement.php?id=106
- * @result AC // Tiempo: 0.636 // Memoria: 3585 // Posicion: 240
+ * @result RTE
  */
 
 public class AR106 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedOutputStream out = new BufferedOutputStream(System.out);
+
 		String linea;
 		while(!(linea=br.readLine()).equals("0")) {
-		
-			int longitud = linea.length();
-			
-			if(longitud<8)
-				linea=String.format("%08d", Long.parseLong(linea));
-			else if(longitud>8 && longitud<13)
+			int longitud=linea.length();
+			char[] line=new char[13];
+
+			String salida="";
+						
+			if(longitud<8) {
+				linea=String.format("%08d", Integer.parseInt(linea));
+			} else if(longitud>=8 && longitud<=13) {
 				linea=String.format("%013d", Long.parseLong(linea));
-			
-			boolean k=false;
-			String pais="";
-			
-			k = isEAN(linea);
-			
-			if (longitud>8 && longitud<=13) {
-				int c1 = linea.charAt(0)-48;
-				int c2 = linea.charAt(1)-48;
-				int c3 = linea.charAt(2)-48;
+				line=linea.toCharArray();
+				char c1=line[0];
+				char c2=line[1];
+				char c3=line[2];
 				
-				if (c1==0) pais="EEUU";
-				else if (c1==3 && c2==8 && c3==0) pais="Bulgaria";
-				else if (c1==5 && c2==0) pais="Inglaterra";
-				else if (c1==5 && c2==3 && c3==9) pais="Irlanda";
-				else if (c1==5 && c2==6 && c3==0) pais="Portugal";
-				else if (c1==7 && c2==0) pais="Noruega";
-				else if (c1==7 && c2==5 && c3==9) pais="Venezuela";
-				else if (c1==8 && c2==5 && c3==0) pais="Cuba";
-				else if (c1==8 && c2==9 && c3==0) pais="India";
-				else pais="Desconocido";
+				if (c1=='0') salida="SI EEUU\n";
+				else if (c1=='3' && c2=='8' && c3=='0') salida="SI Bulgaria\n";
+				else if (c1=='5') {
+					if (c2=='0') salida="SI Inglaterra\n";
+					else if (c2=='3' && c3=='9') salida="SI Irlanda\n";
+					else if (c2=='6' && c3=='0') salida="SI Portugal\n";
+				} else if (c1=='7') {
+					if (c2=='0') salida="SI Noruega\n";
+					else if (c2=='5' && c3=='9') salida="SI Venezuela\n";
+				} else if (c1=='8' && c3=='0') {
+					if (c2=='5') salida="SI Cuba\n";
+					if (c2=='9') salida="SI India\n";
+				} else salida="SI Desconocido\n";
 			}
-			if (k==true) {
-				System.out.print("SI");
-				if(pais.equals(""))
-					System.out.print("\n");
-				else
-					System.out.println(" "+pais);
-	
-			} else
-				System.out.println("NO");
+			
+			if (isEAN(linea))
+				if(salida.equals("")) out.write(("SI\n").getBytes());
+				else out.write((salida).getBytes());
+			else out.write(("NO\n").getBytes());
+			out.flush();
 		}
 	}
 
 	private static boolean isEAN(String linea) {
-		int longitud = linea.length();
-		int dc = linea.charAt(longitud-1)-48;
-		int suma=0;
-		for (int i=1; i<longitud; i++) {
-			int n = linea.charAt(longitud-i-1)-48;
-			if(i%2!=0) suma=suma+n*3;
-			else suma=suma+n;
-		}
-		suma=suma+dc;
+		char[] line = linea.toCharArray();
+		int suma;
+		
+		if(line.length==8)
+			suma = line[7]-48 + (line[6]-48)*3 + line[5]-48 + (line[4]-48)*3 + line[3]-48 + (line[2]-48)*3 + line[1]-48 + (line[0]-48)*3;
+		else
+			suma = line[12]-48 + (line[11]-48)*3 + line[10]-48 + (line[9]-48)*3 + line[8]-48 + (line[7]-48)*3 + line[6]-48 + (line[5]-48)*3 + line[4]-48 + (line[3]-48)*3 + line[2]-48 + (line[1]-48)*3 + line[0] - 48;	
 		
 		if(suma%10==0) return true;
 		else return false;

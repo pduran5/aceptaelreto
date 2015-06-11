@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_cWEHUA92EeWN94c3QcQoHw">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuYA92EeWN94c3QcQoHw" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuYQ92EeWN94c3QcQoHw" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuYg92EeWN94c3QcQoHw" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuYw92EeWN94c3QcQoHw" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuZA92EeWN94c3QcQoHw" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuZQ92EeWN94c3QcQoHw" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuZg92EeWN94c3QcQoHw" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cWEuZw92EeWN94c3QcQoHw" name="short"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cWEuaA92EeWN94c3QcQoHw" name="AR100" visibility="public">
+    <ownedAttribute xmi:id="_cWEuaQ92EeWN94c3QcQoHw" name="contador" type="_cWEuYQ92EeWN94c3QcQoHw"/>
+    <ownedOperation xmi:id="_cWEuag92EeWN94c3QcQoHw" name="main" visibility="public" isStatic="true">
+      <ownedParameter xmi:id="_cWEuaw92EeWN94c3QcQoHw" name="args" type="_cWEubw92EeWN94c3QcQoHw"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_cWEubA92EeWN94c3QcQoHw" name="Kaprekar" visibility="private" isStatic="true">
+      <ownedParameter xmi:id="_cWEubQ92EeWN94c3QcQoHw" name="numero" type="_cWEuZw92EeWN94c3QcQoHw"/>
+      <ownedParameter xmi:id="_cWEubg92EeWN94c3QcQoHw" name="return" type="_cWEuZw92EeWN94c3QcQoHw" direction="return"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_cWEubw92EeWN94c3QcQoHw" name="String"/>
+</uml:Model>
