@@ -19,15 +19,8 @@ public class AR333 {
     }
 
     private static String bicapicua(String n) {
-        int l = n.length();
-        if(l==1) return "SI";
-
-        for(int i=0; i<l/2; i++) {
-            char inicio = n.charAt(i);
-            char fin = n.charAt(l-i-1);
-            if(inicio-fin != 0) return "NO";
-        }
-
+        String inverso = new StringBuilder(n).reverse().toString();
+        if(n.equals(inverso)) return "NO";
         return "SI";
     }
 }
