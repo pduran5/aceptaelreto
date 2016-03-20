@@ -1,7 +1,7 @@
 /**
  * @author EllaNoSeDeJava (CEROCA)
  * @see https://www.aceptaelreto.com/problem/statement.php?id=335
- * @result 
+ * @result AC
  */
 
 import java.util.Scanner;
